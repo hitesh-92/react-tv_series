@@ -7,23 +7,11 @@ import Intro from '../../components/Intro';
 
 class Series extends Component {
 
-
   state = {
     series: [],
     seriesName: '',
     isFetching: false
   }
-
-  // componentDidMount(){
-  //   const link = 'http://api.tvmaze.com/search/shows?q=girls';
-  //   fetch(link)
-  //    .then((res) => {
-  //      return res.json()
-  //    }).then((json) => {
-  //      this.setState({series: json})
-  //    }).catch((err) => console.log(err));
-  // };//didMount
-
 
   onSeriesInputChange = e => {
     this.setState({seriesName: e.target.value, isFetching: true});
@@ -76,7 +64,6 @@ class Series extends Component {
         !isFetching && <SeriesList list={this.state.series} />
       }
 
-      <SeriesList list={this.state.series}/>
       </div>
     )
   }
