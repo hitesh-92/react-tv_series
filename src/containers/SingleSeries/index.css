@@ -1,0 +1,23 @@
+.single-show{
+  padding: 2em;
+  margin: 0 20em;
+  color: #aaa;
+}
+
+.single-show h2{
+  color: black;
+  border-bottom: 1px solid grey;
+}
+
+.single-show img{
+  float: left;
+}
+
+.return{
+  color: #1b335f;
+  text-decoration: none;
+}
+
+.return:hover{
+  color: royalblue;
+}
