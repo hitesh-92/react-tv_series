@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Loader from '../../components/Loader';
+import { Link } from 'react-router-dom';
+import './index.css';
 
 class SingleSeries extends Component {
 
@@ -20,6 +22,8 @@ class SingleSeries extends Component {
      });
   }
 
+
+
   render(){
     // console.log(this.props);
     const { show } = this.state;
@@ -28,19 +32,60 @@ class SingleSeries extends Component {
 
 
     return(
-      <div>
+      <div class="single-show">
         {
           show == null && <Loader />
         }
         {
           show !== null &&
           <div>
+
             <h2>{show.name}</h2>
+
+            {
+              show.image.medium &&
+              <img alt="show" src={show.image.medium} />
+            }
+            {
+              !show.image.medium && show.image.original &&
+              <img alt="show" src={show.image.original} />
+            }
+
+            <p>Rating: {show.rating.average || 'N/A'}</p>
+
             <p>Premeiered: {show.premiered}</p>
-            <p>Rating: {show.rating.average}</p>
+
             <p>Episodes: {show._embedded.episodes.length}</p>
 
-              <img alt="show" src={show.image.medium} />
+            <p>
+              Episode runtime<span><small>(minutes)</small></span>: {show.runtime || 'N/A'}
+            </p>
+
+
+            {
+              show.generes && <p>{show.generes + ' '}</p>
+            }
+
+            {
+              show.externals.imdb &&
+              <a
+                href={`http://www.imdb.com/title/${show.externals.imdb}`}
+                target="_blank"
+                class="imdb_link"
+              >
+                View IMDb
+              </a>
+            }
+
+
+            <p>
+              <Link class="return" to={'/'}>
+                Go Back
+              </Link>
+            </p>
+
+
+
 
           </div>
 
