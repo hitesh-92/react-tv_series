@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-logo {
@@ -19,7 +20,15 @@
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 1.2em;
+  color: rgb(206, 206, 206);
+}
+
+.App-footer{
+  border-top: 1.5px solid red;
+  background-color: black;
+  color: white;
+  padding: 1em
 }
 
 @keyframes App-logo-spin {

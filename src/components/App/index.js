@@ -11,9 +11,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">TV Series List</h1>
+          <h1 className="App-title">TV Series Listings</h1>
         </header>
         <Main />
+        <footer className="App-footer">
+          <small>
+            All information about all tv series viewed is from http://www.tvmaze.com/
+          </small>
+        </footer>
       </div>
     );
   }

@@ -3,6 +3,11 @@ import Loader from '../../components/Loader';
 import { Link } from 'react-router-dom';
 import './index.css';
 
+const ShowSummary = (props) => (
+  <p> {props.summary.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "")} </p>
+)
+
+
 class SingleSeries extends Component {
 
   state = {
@@ -32,62 +37,70 @@ class SingleSeries extends Component {
 
 
     return(
-      <div class="single-show">
-        {
-          show == null && <Loader />
-        }
+      <div className="single-show">
+        { show == null && <Loader /> }
         {
           show !== null &&
-          <div>
+          <template className="seriesInfo">
 
-            <h2>{show.name}</h2>
-
-            {
-              show.image.medium &&
-              <img alt="show" src={show.image.medium} />
-            }
-            {
-              !show.image.medium && show.image.original &&
-              <img alt="show" src={show.image.original} />
-            }
-
-            <p>Rating: {show.rating.average || 'N/A'}</p>
-
-            <p>Premeiered: {show.premiered}</p>
-
-            <p>Episodes: {show._embedded.episodes.length}</p>
-
-            <p>
-              Episode runtime<span><small>(minutes)</small></span>: {show.runtime || 'N/A'}
-            </p>
+            <div className="show-name">
+              <h2>{show.name}</h2>
+            </div>
 
 
-            {
-              show.generes && <p>{show.generes + ' '}</p>
-            }
-
-            {
-              show.externals.imdb &&
-              <a
-                href={`http://www.imdb.com/title/${show.externals.imdb}`}
-                target="_blank"
-                class="imdb_link"
-              >
-                View IMDb
-              </a>
-            }
-
-
-            <p>
-              <Link class="return" to={'/'}>
-                Go Back
-              </Link>
-            </p>
+            <div className="show-img">
+              {
+                show.image !== null && show.image.medium &&
+                <img alt="show" src={show.image.medium} />
+              }
+              {
+                show.image == null && <i>NO IMAGE</i>
+              }
+            </div>
 
 
 
+            <div className="show-details">
+              <p> <span className="info"> Rating: </span> {show.rating.average || 'N/A'}</p>
+              <p> <span className="info"> Premeiered: </span> {show.premiered}</p>
+              <p> <span className="info"> Status:</span> {show.status} </p>
+              <p> <span className="info"> Episodes: </span>  {show._embedded.episodes.length}</p>
+              <p><span className="info"> Episode runtime <span><small>(mins)</small></span> </span> : {show.runtime || 'N/A'}</p>
+              { show.generes && <p>{show.generes + ' '}</p> }
+              
+              {
+                show.externals.imdb &&
+                <a
+                  href={`http://www.imdb.com/title/${show.externals.imdb}`}
+                  target="_blank"
+                  className="series-imdb"
+                  rel="noopener noreferrer"
+                  id="imdb_link" >
+                  View IMDb
+                </a>
+              }
 
-          </div>
+              {
+                show.officialSite &&
+                <a 
+                  className="series-offLink" 
+                  href={show.officialSite}>
+                  View Official Site
+                </a>
+              }
+
+            </div>
+
+            <div className="show-summary">
+              { show.summary && <ShowSummary summary={show.summary} /> }
+              { !show.summary && <p>No reference to show description available</p> }
+            </div>
+
+            <div className="link">
+             <Link to={'/'}> Go Back </Link>
+            </div>
+
+          </template>
 
         }
       </div>

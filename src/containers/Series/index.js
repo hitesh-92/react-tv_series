@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 import SeriesList from '../../components/SeriesList';
 import Loader from '../../components/Loader/';
 import Intro from '../../components/Intro';
-
+import './index.css';
 
 class Series extends Component {
 
@@ -34,38 +34,42 @@ class Series extends Component {
     const {series, seriesName, isFetching} = this.state;
 
     return(
-      <div>
 
-      <Intro message="Here you can find all of the loved series"/>
+      <div className="home-body">
 
-      <div>
+        <Intro message="Here you can find info about every series"/>
 
-        <input
-          value={seriesName}
-          type="text"
-          onChange={this.onSeriesInputChange} />
+        <div className="search-bar">
+          <input
+            value={seriesName}
+            type="text"
+            onChange={this.onSeriesInputChange}
+            placeholder="Enter show name"
+            autoFocus
+          />
+        </div>
+
+        {
+          !isFetching && series.length === 0 && seriesName.trim() === ''
+          &&
+          <p className="search-message">Please enter series name into input</p>
+        }
+        {
+          !isFetching && series.length === 0 && seriesName.trim() !== ''
+          &&
+          <p className="search-message red">NOT FOUND!</p>
+        }
+        {
+          isFetching && <Loader />
+        }
+        {
+          !isFetching && <SeriesList list={this.state.series} />
+        }
 
       </div>
 
-      {
-        !isFetching && series.length === 0 && seriesName.trim() === ''
-        &&
-        <p>Please enter series name into input</p>
-      }
-      {
-        !isFetching && series.length === 0 && seriesName.trim() !== ''
-        &&
-        <p>No tv series has been found with this name</p>
-      }
-      {
-        isFetching && <Loader />
-      }
-      {
-        !isFetching && <SeriesList list={this.state.series} />
-      }
-
-      </div>
     )
+
   }
 }
 

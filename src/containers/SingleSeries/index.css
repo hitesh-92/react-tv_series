@@ -1,23 +1,109 @@
-.single-show{
-  padding: 2em;
-  margin: 0 20em;
-  color: #aaa;
+.seriesInfo{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 200px 1fr 1fr 100px;
+  margin: 0 10vw;
+  grid-gap: 1em;
+  border-left: 1px solid red;
+  background-color: #fcfcfc; 
 }
 
-.single-show h2{
-  color: black;
-  border-bottom: 1px solid grey;
+.show-name{
+  grid-row: 1;
+  grid-column: 1/3;
+  padding-top: 50px;
 }
 
-.single-show img{
-  float: left;
+.show-name h2{
+  text-decoration: underline;
 }
 
-.return{
-  color: #1b335f;
+.show-img{
+  grid-column: 1/2;
+}
+
+.show-img img{
+  border: 5px solid #ffe;
+}
+
+.show-details{
   text-decoration: none;
+  text-align: left;
+  display: block;
 }
 
-.return:hover{
-  color: royalblue;
+.series-imdb{
+  text-decoration: none;
+  background-color: #ededed;
+  padding: 0.1em;
+  border-radius: 5px;
+}
+.series-imdb:hover{
+  background-color: yellow;
+  color: black;
+  font-weight: 1000;
+  transition: 0.2s ease-in;
+}
+
+.series-offLink{
+  display: inline-block;
+  margin-left: 1em;
+  text-decoration: none;
+  background-color: #ededed;
+  padding: 0.1em;
+  border-radius: 5px;
+}
+
+.series-offLink:hover{
+  transition: 0.2s ease-in;
+}
+
+
+.show-summary{
+  padding: 2em 5em 0 5em;
+  text-align: left;
+  grid-column: 1/3;
+  line-height: 1.5em;
+}
+
+.link{
+  grid-column: 1/3;
+  grid-row: 4/5;
+}
+.link a{
+  text-decoration: none;
+  background-color: #ededed;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+.link a:hover{
+  background-color: white;
+  border: 1px solid green;
+  transition: 0.2s ease-in-out;
+  color: black;
+}
+
+
+
+@media (max-width: 575.98px) {
+
+  .seriesInfo{
+    display: block;
+    margin: 0 5vw;
+  }
+
+  .show-details{
+    text-align: center;
+  }
+
+  .show-summary{
+    margin: 2em 0;
+    text-align: center;
+    padding: 0 1em;
+  }
+
+  .link{
+    margin: 2em 0;
+  }
+
 }

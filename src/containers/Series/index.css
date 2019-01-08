@@ -1,0 +1,15 @@
+.home-body{
+  background-image: url('../../assets/home.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  border-top: 1px solid red;
+}
+
+.search-message{
+  color: white;
+}
+
+.red{
+  color: red
+}
